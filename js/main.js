@@ -1,6 +1,6 @@
   $(document).ready(function() {
      $('.onoffswitch').click(function() {
-//add this bellow line;
+//Añadimos la siguiente linea display;
        var message_DIV = $(this).closest('div.onoffswitch').parent().children('div').eq(1);
        var hiddenValueID = $(this).children(':hidden').val();
         if ($(this).children(':checked').length == 0){
@@ -20,5 +20,14 @@ $.ajax({
 	});
 
 	});
+});
+//update y set
+$(document).ready(function() {
+$('.btn-primary').click(function(){
+$(this).removeClass( "btn btn-primary" ).addClass( "btn btn-success" );
+}
+
+);
+   
 });
 	

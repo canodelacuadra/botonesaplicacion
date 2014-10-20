@@ -35,8 +35,8 @@ $result = mysql_query("SELECT * FROM choice ORDER BY id");
 		<h1>Prodisagua</h1>	 
 	</header>
 	<section id='globales'>
-		<h1> Update y Set</h1>
-		
+		<button type="button" class="btn btn-primary">UPDATE</button>
+		<button type="button" class="btn btn-primary">SET</button>
 	</section>
 	<section id='actualizadores'>
 		<h1>Actualizar</h1>
@@ -67,7 +67,7 @@ $result = mysql_query("SELECT * FROM choice ORDER BY id");
                         <div class="onoffswitch-switch"></div>
                     </label>
                 </div>
-                <div id="display">
+                <div class="display">
                 </div>
             </td>
         </tr>

@@ -10,6 +10,6 @@ la experiencia de usuario de interfaz de usuario más. Aquí está el tutorial p
 ## Añadir base de datos
 
 Se necesita una base de datos llamada freeze con tres campos:id, name,y choice
-una tabla que se llame choice
+La tabla se llama choice
 Los valores pueden ser 1,onoffswitch, off
 

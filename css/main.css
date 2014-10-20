@@ -108,17 +108,9 @@ section{
   label{
   display:block;
   }
- #display{
+ .display{
 	 border:1px solid black;
 	 background:rgb(47, 204, 255);
-	 font-family:console, monospace;
-	 color:black;
-	 font-size:.8em;
-	 padding-left:1em;
- }
- #display2{
-	 border:1px solid black;
-	 background:rgb(255, 255, 255);
 	 font-family:console, monospace;
 	 color:black;
 	 font-size:.8em;
@@ -127,7 +119,6 @@ section{
  .controles{
  border:1px solid rgb(47, 204, 255);
  padding-left:1em;
- padding-bottom:1em;
  
  }
    /*=================== Botonera de marcha on off =====================*/
