@@ -1,4 +1,4 @@
-//funcion ajax
+//funcion de consulta de ajax a la base de datos ajax
 $(document).ready(function(){
 	$('#myonoffswitch').click(function(){
 		var myonoffswitch=$('#myonoffswitch').val();
@@ -10,19 +10,18 @@ $(document).ready(function(){
 			{
 			var a="off";
 			}
-
-			$.ajax({
-				type: "POST",
-				url: "ajax.php",
-				data: "value="+a ,
-				success: function(html){
-						$("#display").html(html).show();
-						}
-			});
+		//Consulta ajax
+		$.ajax({
+			type: "POST",
+			url: "ajax.php",
+			data: "value="+a ,
+			success: function(html){
+					$("#display").html(html).show();
+					}
+		});
 
 	});
 });
- 
  //activacion boton
  $(document).ready( function(){
 	$(".cb-enable").click(function(){

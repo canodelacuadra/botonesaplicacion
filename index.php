@@ -1,4 +1,5 @@
 <?php
+//conexión general con la base de datos
 $query=mysql_connect("localhost","root","");
 mysql_select_db("freeze",$query);
 ?>
@@ -31,37 +32,30 @@ mysql_select_db("freeze",$query);
 	</header>
 	<section id='globales'>
 		<h1> Update y Set</h1>
-	
+		<div id="display"></div>
 	</section>
 	<section id='actualizadores'>
 		<h1>Actualizadores</h1>
-		<div id="marcha">
-		<p>Marcha</p>
-		<div class="onoffswitch">
-			<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch"
-			<?php
-			$query3=mysql_query("select * from choice where id=1");
-			$query4=mysql_fetch_array($query3);
-			if($query4['choice']=="off")
-			{
-			echo "checked";
-			}
-			?>>
-			<label class="onoffswitch-label" for="myonoffswitch">
-			<div class="onoffswitch-inner"></div>
-			<div class="onoffswitch-switch"></div>
-			</label>
+		<div class="controles">
+			<p>Marcha</p>
+			<div class="onoffswitch">
+				<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch"
+				<?php
+				//modifica el valor checked del html dependiendo del valor que tenga la base de datos
+				// con esta consulta conseguiremos mantener el valor aunque se recargue la página
+				$query3=mysql_query("select * from choice where id=1");
+				$query4=mysql_fetch_array($query3);
+				if($query4['choice']=="off")
+				{
+				echo "checked";
+				}
+				?>>
+				<label class="onoffswitch-label" for="myonoffswitch">
+				<div class="onoffswitch-inner"></div>
+				<div class="onoffswitch-switch"></div>
+				</label>
+			</div>
 		</div>
-
-		<div id="display"></div>
-		
-		
-		</div>
-	
-		</label>
-		</form>
-		</div>
-	
 	</section>
 	<section id='sensores'>
 		<h1> Sensores</h1>

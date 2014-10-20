@@ -108,7 +108,21 @@ section{
   label{
   display:block;
   }
-   /*=================== Botonera on off =====================*/
+ #display{
+	 border:1px solid black;
+	 background:rgb(47, 204, 255);
+	 font-family:console, monospace;
+	 color:black;
+	 font-size:.8em;
+	 padding-left:1em;
+ }
+ .controles{
+ border:1px solid rgb(47, 204, 255);
+ padding-left:1em;
+ padding-bottom:1em;
+ 
+ }
+   /*=================== Botonera de marcha on off =====================*/
 .onoffswitch {
 position: relative; width: 90px;
 -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
@@ -131,12 +145,12 @@ font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-w
 -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 }
 .onoffswitch-inner:before {
-content: "OFF";
+content: "ON";
 padding-left: 10px;
 background-color: #2FCCFF; color: #FFFFFF;
 }
 .onoffswitch-inner:after {
-content: "ON";
+content: "OFF";
 padding-right: 10px;
 background-color: #EEEEEE; color: #999999;
 text-align: right;
@@ -154,7 +168,10 @@ margin-left: 0;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
 right: 0px;
-}
+
+
+
+
 
 
 
