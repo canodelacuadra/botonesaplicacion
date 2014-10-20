@@ -1,39 +1,24 @@
-//funcion de consulta de ajax a la base de datos ajax
-$(document).ready(function(){
-	$('#myonoffswitch').click(function(){
-		var myonoffswitch=$('#myonoffswitch').val();
-		if ($("#myonoffswitch:checked").length == 0)
-			{
-			var a=myonoffswitch;
-			}
-		else
-			{
-			var a="off";
-			}
-		//Consulta ajax
-		$.ajax({
-			type: "POST",
-			url: "ajax.php",
-			data: "value="+a ,
-			success: function(html){
-					$("#display").html(html).show();
-					}
-		});
+  $(document).ready(function() {
+     $('.onoffswitch').click(function() {
+//add this bellow line;
+       var message_DIV = $(this).closest('div.onoffswitch').parent().children('div').eq(1);
+       var hiddenValueID = $(this).children(':hidden').val();
+        if ($(this).children(':checked').length == 0){
+            var valueData = 'on';
+             }
+        else{
+            var valueData = 'off';
+            }
+
+$.ajax({
+        type: "POST",
+        url: "ajax.php",
+        data: {value: valueData, id: hiddenValueID},
+        success: function(html) {
+        message_DIV.html(html);
+		}
+	});
 
 	});
 });
- //activacion boton
- $(document).ready( function(){
-	$(".cb-enable").click(function(){
-		var parent = $(this).parents('.switch');
-		$('.cb-disable',parent).removeClass('selected');
-		$(this).addClass('selected');
-		$('.checkbox',parent).attr('checked', true);
-		});
-	$(".cb-disable").click(function(){
-		var parent = $(this).parents('.switch');
-		$('.cb-enable',parent).removeClass('selected');
-		$(this).addClass('selected');
-		$('.checkbox',parent).attr('checked', false);
-	});
-});
+	

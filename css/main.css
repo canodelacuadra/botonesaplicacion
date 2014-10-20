@@ -116,6 +116,14 @@ section{
 	 font-size:.8em;
 	 padding-left:1em;
  }
+ #display2{
+	 border:1px solid black;
+	 background:rgb(255, 255, 255);
+	 font-family:console, monospace;
+	 color:black;
+	 font-size:.8em;
+	 padding-left:1em;
+ }
  .controles{
  border:1px solid rgb(47, 204, 255);
  padding-left:1em;
@@ -145,14 +153,14 @@ font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-w
 -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 }
 .onoffswitch-inner:before {
-content: "ON";
+content: "OFF";
 padding-left: 10px;
-background-color: #2FCCFF; color: #FFFFFF;
+background-color: rgb(255,0,0); color: #FFFFFF;
 }
 .onoffswitch-inner:after {
-content: "OFF";
+content: "ON";
 padding-right: 10px;
-background-color: #EEEEEE; color: #999999;
+background-color: rgb(0,255,0); color: #999999;
 text-align: right;
 }
 .onoffswitch-switch {

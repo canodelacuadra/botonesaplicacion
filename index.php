@@ -1,13 +1,15 @@
 <?php
 //conexión general con la base de datos
 $query=mysql_connect("localhost","root","");
+mysql_query("SET NAMES 'utf8'");
 mysql_select_db("freeze",$query);
+$result = mysql_query("SELECT * FROM choice ORDER BY id");
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html lang='es' class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,6 +20,8 @@ mysql_select_db("freeze",$query);
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
         <link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
@@ -32,30 +36,49 @@ mysql_select_db("freeze",$query);
 	</header>
 	<section id='globales'>
 		<h1> Update y Set</h1>
-		<div id="display"></div>
+		
 	</section>
 	<section id='actualizadores'>
-		<h1>Actualizadores</h1>
+		<h1>Actualizar</h1>
 		<div class="controles">
-			<p>Marcha</p>
-			<div class="onoffswitch">
-				<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch"
-				<?php
-				//modifica el valor checked del html dependiendo del valor que tenga la base de datos
-				// con esta consulta conseguiremos mantener el valor aunque se recargue la página
-				$query3=mysql_query("select * from choice where id=1");
-				$query4=mysql_fetch_array($query3);
-				if($query4['choice']=="off")
-				{
-				echo "checked";
-				}
-				?>>
-				<label class="onoffswitch-label" for="myonoffswitch">
-				<div class="onoffswitch-inner"></div>
-				<div class="onoffswitch-switch"></div>
-				</label>
-			</div>
-		</div>
+		<div class="table-responsive">	
+		<table id="datatables" class="table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Selector</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php while ($row = mysql_fetch_array($result)) { ?>
+        <tr>
+            <td><?php echo $row["id"]; ?></td>
+            <td><?php echo $row["name"]; ?></td>
+            <td><?php echo $row["choice"]; ?></td>
+            <td>
+                <div class="onoffswitch">
+				<input type="hidden" value="<?php echo $row["id"]; ?>" />
+				<input type="checkbox" class="onoffswitch-checkbox"
+				<?php if($row['choice']=="off"){echo "checked"; }?> 
+				id="myonoffswitch<?php echo $row["id"]; ?>" >
+				<label class="onoffswitch-label" for="myonoffswitch<?php echo $row["id"]; ?>">
+                        <div class="onoffswitch-inner"></div>
+                        <div class="onoffswitch-switch"></div>
+                    </label>
+                </div>
+                <div id="display">
+                </div>
+            </td>
+        </tr>
+    <?php
+    }
+    ?>
+    </tbody>
+</table></div>
+
+		</div> 
+		
 	</section>
 	<section id='sensores'>
 		<h1> Sensores</h1>
