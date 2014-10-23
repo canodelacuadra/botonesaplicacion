@@ -51,7 +51,7 @@ $(this).removeClass( "btn btn-primary" ).addClass( "btn btn-success" );
 );
    
 });
-	
+//grafico presión	
    google.setOnLoadCallback(drawChart);
    var valPresion=$('#presion').html();
 console.log(valPresion);
@@ -76,4 +76,26 @@ console.log(valPresion);
         chart.draw(data, options);
 
    
+      }
+	  //grafico orientación
+	   google.setOnLoadCallback(drawChart2);
+      function drawChart2() {
+        var data = google.visualization.arrayToDataTable([
+          ['x', 'y'],
+          [ 5,      7],
+          [ 0,      0],
+         
+        ]);
+
+        var options = {
+          title: 'Orientación del Pivo',
+          hAxis: {title: 'Orientación', minValue: -10, maxValue: +10},
+          vAxis: {title: 'ángulo', minValue: -10, maxValue: +10},
+            lineWidth:1,
+          legend: 'none'
+        };
+
+        var chart = new google.visualization.ScatterChart(document.getElementById('chart_div_pivo'));
+
+        chart.draw(data, options);
       }
