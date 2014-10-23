@@ -33,15 +33,16 @@ $result = mysql_query("SELECT * FROM choice WHERE id=1");
         <!-- Agregar su sitio o aplicación contenido aquí -->
 	<div class="container">
 	<header>
-		<h2>2RPivots</h2>
+		<h2 id='nomaplicacion'>2RPivots</h2>
 	</header>
 		<?php while ($row = mysql_fetch_array($result)) { ?>		
 		<section id='maquina'>
-		<div id="reloj" ></div>
 		
-		<div class="controles"><p>Estado actual de la máquina: <span><?php echo $row["id"]; ?></span></span>
+		<div class='controles'id="reloj" ></div>
+		
+		<div class="controles"><p><span>Estado actual de la máquina <strong>Nº: </strong> <?php echo $row["id"]; ?></span>
 		</p>
-		<button type="button" class="btn btn-primary">CAMBIAR</button>
+		
 		</div>
 		</section>
 	</div>
@@ -65,7 +66,7 @@ $result = mysql_query("SELECT * FROM choice WHERE id=1");
 			
 		
 		</div>
-		<div class="controles"><p>Presión:</p> <span id='presion'><?php echo $row["presion"]; ?></span>
+		<div class="controles"><p>Presión:</p> <span id='presion'><?php echo $row["presion"]; ?></span>mca
 		<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['gauge']}]}"></script>
        <div id="chart_div"></div>
 		</div>
@@ -76,14 +77,17 @@ $result = mysql_query("SELECT * FROM choice WHERE id=1");
 	</div>
 	
 	<div id="derecha">	
-	<section id='grafico'>
+	<div class="controles" id='grafico'>
+	<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
+       <div id="chart_div_pivo"></div>
+	<div ><p>Ángulo:</p> <span><?php echo $row["angulo"]; ?></span></div>
 	
-	
-	
-		</section>
+		</div>
 	<section id='orientacion'>
 	
-		<div class="controles"><p>Ángulo:</p> <span><?php echo $row["angulo"]; ?></span></div>
+		<div class="controles">
+		<button type="button" class="btn btn-primary">CAMBIAR</button>
+		</div>
 	
 		</section></div>
 		
