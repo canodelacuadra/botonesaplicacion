@@ -3,7 +3,7 @@
 $query=mysql_connect("localhost","root","");
 mysql_query("SET NAMES 'utf8'");
 mysql_select_db("freeze",$query);
-$result = mysql_query("SELECT * FROM choice WHERE id=1");
+$result = mysql_query("SELECT * FROM choice ORDER BY id");
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -31,66 +31,62 @@ $result = mysql_query("SELECT * FROM choice WHERE id=1");
         <![endif]-->
 
         <!-- Agregar su sitio o aplicación contenido aquí -->
-	<div class="container">
 	<header>
-		<h2>2RPivots</h2>
+		<h1>Prodisagua</h1>	 
 	</header>
-		<?php while ($row = mysql_fetch_array($result)) { ?>		
-		<section id='maquina'>
-		<div id="reloj" ></div>
-		
-		<div class="controles"><p>Estado actual de la máquina: <span><?php echo $row["id"]; ?></span></span>
-		</p>
+	<section id='globales'>
 		<button type="button" class="btn btn-primary">CAMBIAR</button>
-		</div>
-		</section>
-	</div>
-	<div class="container flex">
-	<div id="izquierda"><section id='actualizadores'>
-    
-        
-           
-        <div class="controles"><p>Marcha:</p> <span><?php echo $row["marcha"]; ?></span></div>
-        <div class="controles"><p>Dirección:</p> <span><?php echo $row["direccion"]; ?></span></div>
-		<div class="controles"><p>Agua:</p> <span><?php echo $row["agua"]; ?></span></div>
-		<div class="controles"><p>Auto Start:</p> <span><?php echo $row["autostart"]; ?></span></div>
-		<div class="controles"><p>Auto Reverse:</p> <span><?php echo $row["autoreverse"]; ?></span></div>
-        
-    
+		<!-- <button type="button" class="btn btn-primary">SET</button> -->
+	</section>
+	<section id='actualizadores'>
+		<div class="controles">
+		<div class="table-responsive">	
+		<table id="datatables" class="table">
+    <thead>
+    <tr>
+        <!-- <th>ID</th> -->
+        <th>Nombre</th>
+        <th>Selector</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php while ($row = mysql_fetch_array($result)) { ?>
+        <tr>
+            <!-- <td><?//php echo $row["id"]; ?></td> -->
+            <td class='control'><?php echo $row["name"]; ?></td>
+            <td class='estado'><span><?php echo $row["choice"]; ?></span></td>
+            <td>
+                <div class="onoffswitch">
+				<input type="hidden" value="<?php echo $row["id"]; ?>" />
+				<input type="checkbox" class="onoffswitch-checkbox"
+				<?php if($row['choice']=="off"){echo "checked"; }?> 
+				id="myonoffswitch<?php echo $row["id"]; ?>" >
+				<label class="onoffswitch-label" for="myonoffswitch<?php echo $row["id"]; ?>">
+                        <div class="onoffswitch-inner"></div>
+                        <div class="onoffswitch-switch"></div>
+                    </label>
+                </div>
+                <div class="display">
+                </div>
+            </td>
+        </tr>
+    <?php
+    }
+    ?>
+    </tbody>
+</table></div>
+
+		</div> 
 		
 	</section>
 	<section id='sensores'>
-	<div class="controles"><p>Velocidad:</p> <p><span><?php echo $row["velocidad"]; ?></span></p></div>
-        <div class="controles"><p>Caudal:</p> <span><?php echo $row["caudal"]; ?></span>
-			
-		
-		</div>
-		<div class="controles"><p>Presión:</p> <span id='presion'><?php echo $row["presion"]; ?></span>
-		<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['gauge']}]}"></script>
-       <div id="chart_div"></div>
-		</div>
-		
-		<div class="controles"><p>Seguridad:</p> <span><?php echo $row["seguridad"]; ?></span></div>
-		
+		<h1> Sensores</h1>
+	
 	</section>
-	</div>
+		<section id='orientacion'>
+		<h1> Orientación Pivo</h1>
 	
-	<div id="derecha">	
-	<section id='grafico'>
-	
-	
-	
-		</section>
-	<section id='orientacion'>
-	
-		<div class="controles"><p>Ángulo:</p> <span><?php echo $row["angulo"]; ?></span></div>
-	
-		</section></div>
-		
-		</div>
-	<?php
-    }
-    ?>
+	</section>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
