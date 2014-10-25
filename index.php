@@ -68,18 +68,19 @@ include('header.php');
 									<span class="onoffswitch-inner"></span>
 									<span class="onoffswitch-switch"></span>
 								</label>
-							</div>
+								</div>
 								<div id='disprograma'>
 								<span class='estado'><?php echo $row["startinicio"]; ?></span>
 								<span class='estado'><?php echo $row["startparada"]; ?></span>
 								</div>
+							
 							</div>
-	
 							<div id="inprograma"class="inputs">
-								<input type="time" class="form-control input-sm">
-								<input type="time" class="form-control input-sm">
-								<span class="help-block">Cambiar programa</span>
+								<input type="time" class="form-control">
+								<input type="time" class="form-control">
+								<!--  <span class="help-block">Cambiar programa</span>  -->
 							</div>
+							
 						</div>
 						<div id='autoreverse'class="controles">
 						<p>Auto Reverse: 

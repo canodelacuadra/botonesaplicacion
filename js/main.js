@@ -12,11 +12,8 @@ function checkTime(i)
 	{if (i<10) {i="0" + i;}return i;}
 	window.onload=function(){startTime();}
   
-// colores de los controles
+// colores de los controles de los displays
 $(document).ready(function() {
-	 
-
-
 $('.controles span.estado').each(function(){
 	var textoEstado=$(this).html();
 	var on='on',off='off';
@@ -33,9 +30,7 @@ $('.controles span.estado').each(function(){
 
 });	 
 		 
-	
-	
-   
+	  
 });
 //comportamiento botón modificar 
 
@@ -51,7 +46,7 @@ window.location.href = "actualizar.php";
    
 });
 
-//autochequeo de botones
+
 
 ////////boton plugin onoff
 
@@ -70,7 +65,8 @@ window.location.href = "actualizar.php";
 	
 	var autostart=$("#disautostart").html();
 	if(autostart=='on'){
-	$("#switch-autostart").prop('checked',true);}
+	$("#switch-autostart").prop('checked',true);
+	}
 	
 	
 	var autoreverse=$("#disautoreverse").html();
