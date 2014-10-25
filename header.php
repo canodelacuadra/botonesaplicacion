@@ -24,8 +24,8 @@
         <![endif]-->
 
         <!-- Agregar su sitio o aplicación contenido aquí -->
-	<div class="container">
-	<header>
+	
+	<header class="container">
 		<h2 id='nomaplicacion'>2RPivots</h2>
 		
 	</header>

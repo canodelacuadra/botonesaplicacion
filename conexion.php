@@ -1,8 +1,8 @@
 <?php
 //conexión general con la base de datos
-$query=mysql_connect("94.247.31.247","Manuel","Prodisagua*2014");
+$query=mysql_connect("localhost","root","");
 mysql_query("SET NAMES 'utf8'");
-mysql_select_db("pivot2r",$query);
+mysql_select_db("freeze",$query);
 $result = mysql_query("SELECT * FROM choice WHERE id=1");
   
 ?>

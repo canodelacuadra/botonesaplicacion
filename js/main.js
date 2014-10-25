@@ -16,20 +16,18 @@ function checkTime(i)
 $(document).ready(function() {
 	 
 
-console.log($('.estado').each(function(){$(this).html();}));
-$('.controles span').each(function(){
+
+$('.controles span.estado').each(function(){
 	var textoEstado=$(this).html();
-	var on='on',off='off',izquierda='izquierda',derecha='derecha';
-	if(textoEstado==on||textoEstado==izquierda){
+	var on='on',off='off';
+	if(textoEstado==on){
 	$(this).css({
-	"backgroundColor":"green",
-	'color':'white'
+	'color':'green'
 	});
 		 }
-	if(textoEstado==off||textoEstado==derecha){
+	if(textoEstado==off){
 		 $(this).css({
-	"backgroundColor":"red",
-	'color':'white'
+	'color':'red'
 	});
 		  }
 
@@ -39,22 +37,104 @@ $('.controles span').each(function(){
 	
    
 });
-//comportamiento botón modificar
+//comportamiento botón modificar 
 
 $(document).ready(function() {
 
-$('.btn-primary').click(function(){
+$('#enviaract').click(function(){
 $(this).removeClass( "btn btn-primary" ).addClass( "btn btn-success" );
+window.location.href = "actualizar.php";
 
 }
 
 );
    
 });
+
+//autochequeo de botones
+
+
+ function cheqDireccion(){$("#switch-direccion").attr('checked',function(){
+			var direccion=$("#display-direccion").html();
+			if (direccion=='derecha'){
+			$("#switch-direccion").attr('checked',true)
+			} 
+			}
+			);}
+ function cheqAgua(){$("#switch-agua").attr('checked',function(){
+			var agua=$("#display-agua").html();
+			if (agua=='on'){
+			$("#switch-agua").attr('checked',true)
+			} 
+			}
+			);}	
+ function cheqAutostart(){$("#switch-autostart").attr('checked',function(){
+			var autostart=$("#display-autostart").html();
+			if (autostart=='on'){
+			$("#switch-autostart").attr('checked',true)
+			} 
+			}
+			);}	
+ function cheqAutoreverse(){$("#switch-autoreverse").attr('checked',function(){
+			var autoreverse=$("#display-autoreverse").html();
+			if (autoreverse=='on'){
+			$("#switch-autoreverse").attr('checked',true)
+			} 
+			}
+			);}	
+////////boton plugin onoff
+var marcha=$("#dismar").html();
+if (marcha=='off'){marcha=false;} 
+if (marcha=='on'){marcha=true;}
+$("#switch-marcha").switchButton({
+checked:marcha
+});
+//
+var direccion=$("#disdi").html();
+if (direccion=='izquierda'){marcha=false;} 
+if (direccion=='derecha'){marcha=true;}
+$("#switch-direccion").switchButton({
+  on_label: 'DER',
+  off_label: 'IZQU',
+  checked:direccion,
+});
+//
+
+$("#switch-agua").switchButton({
+   checked:undefined,
+});
+//funciones para disparar cuando está en on
+	function disProgramaOn(){
+	$("#disprograma .estado").css({
+	 'color':'rgba(47, 204, 255,1)'
+		});
+	$("#inprograma").show();
+	
+	}
+	function disprogramaOff(){
+	$("#disprograma .estado").css({
+	 'color':'rgba(0, 0, 0,0.7)'
+		});
+		$("#inprograma").hide();
+	}
+
+$("#switch-autostart").switchButton({
+ checked:undefined,
+on_callback: disProgramaOn,
+off_callback: disprogramaOff
+});
+$("#switch-autoreverse").switchButton({
+checked:cheqAutoreverse
+});
+// $("#switch-seguridad").switchButton({
+
+// });
+		
+
+/////////////////////////////graficos
 //grafico presión	
    google.setOnLoadCallback(drawChart);
-   var valPresion=$('#presion').html();
-console.log(valPresion);
+   var valPresion=$('#displaypresion').html();
       function drawChart() {
 	valPresion=eval(valPresion);
         var data = google.visualization.arrayToDataTable([
