@@ -53,83 +53,29 @@ window.location.href = "actualizar.php";
 
 //autochequeo de botones
 
-
- function cheqDireccion(){$("#switch-direccion").attr('checked',function(){
-			var direccion=$("#display-direccion").html();
-			if (direccion=='derecha'){
-			$("#switch-direccion").attr('checked',true)
-			} 
-			}
-			);}
- function cheqAgua(){$("#switch-agua").attr('checked',function(){
-			var agua=$("#display-agua").html();
-			if (agua=='on'){
-			$("#switch-agua").attr('checked',true)
-			} 
-			}
-			);}	
- function cheqAutostart(){$("#switch-autostart").attr('checked',function(){
-			var autostart=$("#display-autostart").html();
-			if (autostart=='on'){
-			$("#switch-autostart").attr('checked',true)
-			} 
-			}
-			);}	
- function cheqAutoreverse(){$("#switch-autoreverse").attr('checked',function(){
-			var autoreverse=$("#display-autoreverse").html();
-			if (autoreverse=='on'){
-			$("#switch-autoreverse").attr('checked',true)
-			} 
-			}
-			);}	
 ////////boton plugin onoff
-var marcha=$("#dismar").html();
-if (marcha=='off'){marcha=false;} 
-if (marcha=='on'){marcha=true;}
-$("#switch-marcha").switchButton({
-checked:marcha
-});
-//
-var direccion=$("#disdi").html();
-if (direccion=='izquierda'){marcha=false;} 
-if (direccion=='derecha'){marcha=true;}
-$("#switch-direccion").switchButton({
-  on_label: 'DER',
-  off_label: 'IZQU',
-  checked:direccion,
-});
-//
 
-$("#switch-agua").switchButton({
-   checked:undefined,
-});
-//funciones para disparar cuando está en on
-	function disProgramaOn(){
-	$("#disprograma .estado").css({
-	 'color':'rgba(47, 204, 255,1)'
-		});
-	$("#inprograma").show();
+//Regogiendo los datos de los displays
+	var marcha=$("#dismar").html();
+	if(marcha=='on'){
+	$("#switch-marcha").prop('checked',true);}
 	
-	}
-	function disprogramaOff(){
-	$("#disprograma .estado").css({
-	 'color':'rgba(0, 0, 0,0.7)'
-		});
-		$("#inprograma").hide();
-	}
-
-$("#switch-autostart").switchButton({
- checked:undefined,
-on_callback: disProgramaOn,
-off_callback: disprogramaOff
-});
-$("#switch-autoreverse").switchButton({
-checked:cheqAutoreverse
-});
-// $("#switch-seguridad").switchButton({
-
-// });
-		
+	var direccion=$("#disdir").html();
+	if(direccion=='derecha'){
+	$("#switch-direccion").prop('checked',true);}
+	
+	var agua=$("#disagua").html();
+	if(agua=='on'){
+	$("#switch-agua").prop('checked',true);}
+	
+	var autostart=$("#disautostart").html();
+	if(autostart=='on'){
+	$("#switch-autostart").prop('checked',true);}
+	
+	
+	var autoreverse=$("#disautoreverse").html();
+	if(autoreverse=='on'){
+	$("#switch-autoreverse").prop('checked',true);}
 
 /////////////////////////////graficos
 //grafico presión	

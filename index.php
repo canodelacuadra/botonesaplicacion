@@ -25,34 +25,50 @@ include('header.php');
 							<p>Marcha:
 							<span id='dismar' class='estado'><?php echo $row["marcha"]; ?></span>
 							</p> 
-							<div class="switch-wrapper">
-								<input id='switch-marcha'type="checkbox">
+							<div class="onoffswitch">
+								<input type="checkbox" name="" class="onoffswitch-checkbox" id="switch-marcha">
+								<label class="onoffswitch-label" for="switch-marcha">
+									<span class="onoffswitch-inner"></span>
+									<span class="onoffswitch-switch"></span>
+								</label>
 							</div>
-						</div>
+							</div>
 						
 						<div id='direccion' class="controles">
 						<p>Dirección:
 							<span id='disdir'class='estado'><?php echo $row["direccion"]; ?></span>
 						</p> 
-						<div class="switch-wrapper">
-								<input id='switch-direccion'type="checkbox">
+						<div class="btdir">
+								<input type="checkbox" name="" class="btdir-checkbox" id="switch-direccion">
+								<label class="btdir-label" for="switch-direccion">
+									<span class="btdir-inner"></span>
+									<span class="btdir-switch"></span>
+								</label>
 							</div>
 						</div>
 						<div id='agua'class="controles">
-							<p>Agua: <span id='display-agua' class='estado'><?php echo $row["agua"]; ?></span>
+							<p>Agua: <span id='disagua' class='estado'><?php echo $row["agua"]; ?></span>
 							</p>
-							<div class="switch-wrapper">
-							<input id='switch-agua'type="checkbox">
+							<div class="onoffswitch">
+								<input type="checkbox" name="" class="onoffswitch-checkbox" id="switch-agua">
+								<label class="onoffswitch-label" for="switch-agua">
+									<span class="onoffswitch-inner"></span>
+									<span class="onoffswitch-switch"></span>
+								</label>
 							</div>
 						</div>
 						<div id='autostart'class="controles">
 							<div class="">
 								<p>Auto Start: 
-								<span id='display-autostart'class='estado'><?php echo $row["autostart"]; ?></span>
+								<span id='disautostart'class='estado'><?php echo $row["autostart"]; ?></span>
 								</p>
-								<div class="switch-wrapper">
-								<input id='switch-autostart'type="checkbox">
-								</div>
+								<div class="onoffswitch">
+								<input type="checkbox" name="" class="onoffswitch-checkbox" id="switch-autostart">
+								<label class="onoffswitch-label" for="switch-autostart">
+									<span class="onoffswitch-inner"></span>
+									<span class="onoffswitch-switch"></span>
+								</label>
+							</div>
 								<div id='disprograma'>
 								<span class='estado'><?php echo $row["startinicio"]; ?></span>
 								<span class='estado'><?php echo $row["startparada"]; ?></span>
@@ -67,11 +83,15 @@ include('header.php');
 						</div>
 						<div id='autoreverse'class="controles">
 						<p>Auto Reverse: 
-						<span id='display-autoreverse'class='estado'><?php echo $row["autoreverse"]; ?></span>
+						<span id='disautoreverse'class='estado'><?php echo $row["autoreverse"]; ?></span>
 						</p>
-						<div class="switch-wrapper">
-						<input id='switch-autoreverse'type="checkbox">
-						</div>
+						<div class="onoffswitch">
+								<input type="checkbox" name="" class="onoffswitch-checkbox" id="switch-autoreverse">
+								<label class="onoffswitch-label" for="switch-autoreverse">
+									<span class="onoffswitch-inner"></span>
+									<span class="onoffswitch-switch"></span>
+								</label>
+							</div>
 						</div>
 					</section>
 					<section id='sensores'>
