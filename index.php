@@ -4,17 +4,20 @@ include('conexion.php');
 include('header.php');
 ?>
 
-		<?php while ($row = mysql_fetch_array($result)) { ?>		
-		<form action='procesar.php'method='post'>
+		<?php 
+		$result = mysql_query("SELECT * FROM  `registros` ORDER BY  `id-registro` DESC LIMIT 1");
+		while ($row = mysql_fetch_array($result)) { ?>		
+		<form action='procesar.php'method='request'>
 		<div id='container' class="container">
 			<div class='' id='header'>
-				<div class='controles'id="reloj" >
+				<div class='controles' ><span class='estado' id="reloj"></span>
 				</div>
 				<div id="estadomaq" class="controles">
-					<p><span>Estado actual de la máquina <strong>Nº: </strong> <?php echo $row["id"]; ?></span></p>
+					<h2>Estado general de la máquina</h2>
+					<p>Última actualización: <span class='estado'><?php echo $row["fecha"]; ?></span></p>
 				</div>
 				<div id="actualizar"class='controles' id='actualizar'>
-					<button type="button" class="btn btn-primary btn-lg btn-block">ACTUALIZAR <span class="glyphicon glyphicon-share"></span></button>
+					<button  class="btn btn-primary btn-lg btn-block">ACTUALIZAR <span class="glyphicon glyphicon-share"></span></button>
 				</div>
 			</div>
 		
@@ -26,7 +29,7 @@ include('header.php');
 							<span id='dismar' class='estado'><?php echo $row["marcha"]; ?></span>
 							</p> 
 							<div class="onoffswitch">
-								<input type="checkbox" name="" class="onoffswitch-checkbox" id="switch-marcha">
+								<input type="checkbox" name="marcha" class="onoffswitch-checkbox" id="switch-marcha">
 								<label class="onoffswitch-label" for="switch-marcha">
 									<span class="onoffswitch-inner"></span>
 									<span class="onoffswitch-switch"></span>
@@ -39,7 +42,8 @@ include('header.php');
 							<span id='disdir'class='estado'><?php echo $row["direccion"]; ?></span>
 						</p> 
 						<div class="btdir">
-								<input type="checkbox" name="" class="btdir-checkbox" id="switch-direccion">
+								 
+								<input type="checkbox" name="direccion" class="btdir-checkbox" id="switch-direccion">
 								<label class="btdir-label" for="switch-direccion">
 									<span class="btdir-inner"></span>
 									<span class="btdir-switch"></span>
@@ -50,7 +54,7 @@ include('header.php');
 							<p>Agua: <span id='disagua' class='estado'><?php echo $row["agua"]; ?></span>
 							</p>
 							<div class="onoffswitch">
-								<input type="checkbox" name="" class="onoffswitch-checkbox" id="switch-agua">
+								<input type="checkbox" name="agua" class="onoffswitch-checkbox" id="switch-agua">
 								<label class="onoffswitch-label" for="switch-agua">
 									<span class="onoffswitch-inner"></span>
 									<span class="onoffswitch-switch"></span>
@@ -63,7 +67,7 @@ include('header.php');
 								<span id='disautostart'class='estado'><?php echo $row["autostart"]; ?></span>
 								</p>
 								<div class="onoffswitch">
-								<input type="checkbox" name="" class="onoffswitch-checkbox" id="switch-autostart">
+								<input type="checkbox" name="autostart" class="onoffswitch-checkbox" id="switch-autostart">
 								<label class="onoffswitch-label" for="switch-autostart">
 									<span class="onoffswitch-inner"></span>
 									<span class="onoffswitch-switch"></span>
@@ -76,10 +80,10 @@ include('header.php');
 							
 							</div>
 							<div id="inprograma"class="inputs">
-								<input type="time" class="form-control">
-								<input type="time" class="form-control">
-								<!--  <span class="help-block">Cambiar programa</span>  -->
-							</div>
+								<input type="time" name="startinicio" value='<?php echo $row["startinicio"]; ?>' class="form-control">
+								<input type="time" name="startparada"value='<?php echo $row["startparada"]; ?>'class="form-control">
+								
+							</div> 
 							
 						</div>
 						<div id='autoreverse'class="controles">
@@ -87,7 +91,7 @@ include('header.php');
 						<span id='disautoreverse'class='estado'><?php echo $row["autoreverse"]; ?></span>
 						</p>
 						<div class="onoffswitch">
-								<input type="checkbox" name="" class="onoffswitch-checkbox" id="switch-autoreverse">
+								<input type="checkbox" name="autoreverse" class="onoffswitch-checkbox" id="switch-autoreverse">
 								<label class="onoffswitch-label" for="switch-autoreverse">
 									<span class="onoffswitch-inner"></span>
 									<span class="onoffswitch-switch"></span>
@@ -100,9 +104,18 @@ include('header.php');
 						<p>Velocidad: <span class='estado'><?php echo $row["velocidad"]; ?></span>
 						</p>
 						<div class="inputs">
-							<input type="number" class="form-control" placeholder="caudal">	
+							<label for='velocidad'>Velocidad</label>
+							<input type="range" min='100' max='400' step="10"id="fadervelocidad" name="velocidad" value=""onchange="capturaVelocidad(value)">
+							<output class='output' for='velocidad' id='disvelocidad'><?php echo $row["velocidad"]; ?></output>
 							<span class="help-block">Modifique la velocidad</span> 
-							</div>
+							<script>
+							function capturaVelocidad(vel) {
+									document.querySelector('#disvelocidad').value = vel;
+									}
+							</script>
+							
+			
+						</div>
 						</div>
 						<div id='caudal'class="controles"><p>Caudal: <span class='estado'><?php echo $row["caudal"]; ?></span>
 						</p>	
@@ -136,13 +149,16 @@ include('header.php');
 							<div>
 							<p>Ángulo: <span class='estado'><?php echo $row["angulo"]; ?></span></div>
 							</p>
-							<div class="inputs">
-							<input type="number" class="form-control input-sm">
-							<span class="help-block">Modifique la velocidad del pivot</span>
-							</div>
+	
 						</div>
 					</section>
+					<!-- Recogemos los campos del formulario que no tocamos como campos hidden para que al procesarse 
+					aparezcan éstos con valores por defecto-->
+					<input type='hidden'name='presion'value='<?php echo $row["presion"]; ?>'>
+				<input type='hidden'name='caudal'value='<?php echo $row["caudal"]; ?>'>
 				
+				<input type='hidden'name='seguridad'value='<?php echo $row["seguridad"]; ?>'>
+				<input type='hidden'name='angulo'value='<?php echo $row["angulo"]; ?>'>
 				
 				</div>
 			</div>
@@ -152,6 +168,8 @@ include('header.php');
 	<?php
     }
     ?>
+	
 	<?php
+	include('cierra_conexion.php');
 	include('footer.php');
      ?> 

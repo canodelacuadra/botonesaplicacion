@@ -32,36 +32,32 @@ $('.controles span.estado').each(function(){
 		 
 	  
 });
-//comportamiento botón modificar 
-
-$(document).ready(function() {
-
-$('#enviaract').click(function(){
-$(this).removeClass( "btn btn-primary" ).addClass( "btn btn-success" );
-window.location.href = "actualizar.php";
-
-}
-
-);
-   
-});
-
-
 
 ////////boton plugin onoff
 
 //Regogiendo los datos de los displays
 	var marcha=$("#dismar").html();
+	console.log(marcha);
 	if(marcha=='on'){
 	$("#switch-marcha").prop('checked',true);}
+	if(marcha=='off'){
+	$("#switch-marcha").prop({'checked':false, 'value':'off'});
+	}
 	
 	var direccion=$("#disdir").html();
 	if(direccion=='derecha'){
-	$("#switch-direccion").prop('checked',true);}
+	$("#switch-direccion").prop({
+	'checked':true,
+	'value':'derecha'
+	});}
 	
 	var agua=$("#disagua").html();
+	console.log(agua);
 	if(agua=='on'){
 	$("#switch-agua").prop('checked',true);}
+	if(agua=='off'){
+	$("#switch-agua").prop({'checked':false, 'value':'off'});
+	}
 	
 	var autostart=$("#disautostart").html();
 	if(autostart=='on'){
@@ -72,6 +68,9 @@ window.location.href = "actualizar.php";
 	var autoreverse=$("#disautoreverse").html();
 	if(autoreverse=='on'){
 	$("#switch-autoreverse").prop('checked',true);}
+
+//funcion range
+
 
 /////////////////////////////graficos
 //grafico presión	
@@ -102,19 +101,29 @@ window.location.href = "actualizar.php";
 	  //grafico orientación
 	   google.setOnLoadCallback(drawChart2);
       function drawChart2() {
+	 
         var data = google.visualization.arrayToDataTable([
           ['x', 'y'],
-          [ 5,      7],
-          [ 0,      0],
+          [ 7,   0],
+          [ 0,   0],
          
         ]);
 
         var options = {
-          title: 'Orientación del Pivo',
-          hAxis: {title: 'Orientación', minValue: -10, maxValue: +10},
-          vAxis: {title: 'ángulo', minValue: -10, maxValue: +10},
-            lineWidth:1,
-          legend: 'none'
+          title: 'Orientación del Pivot',
+		  titleTextStyle:{color: 'white', fontName: 'monospace', fontSize: '12px'},
+          hAxis: { minValue: -10, maxValue: +10,ticks: [-10,0,10]},
+          vAxis: { minValue: -10, maxValue: +10,greedlines:4,minorGreedlines:7,ticks: [-10,0,10]},
+	
+		 
+            lineWidth:3,
+			pointSize:0,
+          legend: 'none',
+		  backgroundColor:{fill:'#333',stroke:'rgba(0,0,0,0)',strokeWidth:3},
+		  chartArea:{backgroundColor:'rgb(0, 0, 0)'},
+		  colors:['rgb(47, 204, 255)'],
+		 
+		  
         };
 
         var chart = new google.visualization.ScatterChart(document.getElementById('chart_div_pivo'));
